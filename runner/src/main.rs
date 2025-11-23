@@ -13,13 +13,20 @@ struct Args {
 
 fn main() -> Result<()> {
     let args = Args::from_args();
-
+    let entries2022 = aoc2022::get_entries();
     let entries2023 = aoc2023::get_entries();
     let entries2024 = aoc2024::get_entries();
 
     let mut results = Vec::new();
 
     match args.year {
+        2022 => {
+            for entry in entries2022.iter() {
+                if args.day.is_none() || Some(entry.day) == args.day {
+                    results.push((entry.day, (entry.solve)()));
+                }
+            }
+        }
         2023 => {
             for entry in entries2023.iter() {
                 if args.day.is_none() || Some(entry.day) == args.day {
