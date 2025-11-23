@@ -1,0 +1,22 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  build:
+    cmds:
+      - cargo build
+    silent: true
+  
+  run:
+    vars:
+      YEAR: '{{.YEAR | default "2024"}}'
+      DAY: '{{.DAY}}'
+    cmds:
+      - |
+        if [ -n "{{.DAY}}" ]; then
+          cargo run -p runner -- {{.YEAR}} --day {{.DAY}};
+        else
+          cargo run -p runner -- {{.YEAR}};
+        fi
+    silent: true

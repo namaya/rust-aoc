@@ -1,0 +1,47 @@
+
+use structopt::StructOpt;
+use anyhow::Result;
+
+#[derive(StructOpt)]
+struct Args {
+    /// year to run (e.g., 2024)
+    year: u32,
+    /// day to run (e.g., 1). If omitted, run all days.
+    #[structopt(short, long)]
+    day: Option<u32>,
+}
+
+fn main() -> Result<()> {
+    let args = Args::from_args();
+
+    let entries2023 = aoc2023::get_entries();
+    let entries2024 = aoc2024::get_entries();
+
+    let mut results = Vec::new();
+
+    match args.year {
+        2023 => {
+            for entry in entries2023.iter() {
+                if args.day.is_none() || Some(entry.day) == args.day {
+                    results.push((entry.day, (entry.solve)()));
+                }
+            }
+        }
+        2024 => {
+            for entry in entries2024.iter() {
+                if args.day.is_none() || Some(entry.day) == args.day {
+                    results.push((entry.day, (entry.solve)()));
+                }
+            }
+        }
+        _ => {}
+    }
+
+    results.sort_by_key(|&(day, _)| day);
+
+    for (day, result) in results {
+        println!("Day {}: {}", day, result);
+    }
+
+    Ok(())
+}

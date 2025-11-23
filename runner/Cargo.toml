@@ -1,0 +1,15 @@
+[package]
+name = "runner"
+version = "0.1.0"
+edition = "2024"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+common = { path = "../common" }
+aoc2023 = { path = "../years/aoc2023" }
+aoc2024 = { path = "../years/aoc2024" }
+anyhow = "1"
+structopt = "0.3"
+inventory = "0.3"
+
