@@ -4,6 +4,7 @@ use std::{fs, path::Path};
 pub fn solve() -> String {
     let project_root = env!("CARGO_MANIFEST_DIR");
     let input_path = Path::new(project_root).join("inputs/day01/full.txt");
+
     let contents = fs::read_to_string(input_path)
         .expect("Error reading file...");
 
