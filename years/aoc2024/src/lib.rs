@@ -1,7 +1,7 @@
 pub struct AocEntry2024 {
     pub year: u32,
     pub day: u32,
-    pub solve: fn(full: bool) -> String,
+    pub solve: fn(full: bool, part: Option<u8>) -> String,
 }
 
 inventory::collect!(AocEntry2024);

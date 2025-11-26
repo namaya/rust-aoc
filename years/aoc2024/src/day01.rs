@@ -35,7 +35,20 @@ pub fn read_input(day: u8, full: bool) -> Result<String, Error> {
     contents
 }
 
-pub fn solve1(full: bool) -> String {
+pub fn solve(full: bool, part: Option<u8>) -> String {
+    match part {
+        Some(1) => solve1(full),
+        Some(2) => solve2(full),
+        None => {
+            let part1 = solve1(full);
+            let part2 = solve2(full);
+            format!("Part 1: {}\tPart 2: {}", part1, part2)
+        }
+        _ => "Invalid part".to_string(),
+    }
+}
+
+fn solve1(full: bool) -> String {
     let contents = read_input(1, full).expect("Failed to read input file");
 
     let (mut left_list, mut right_list): (Vec<i32>, Vec<i32>) = contents
@@ -67,7 +80,7 @@ pub fn solve1(full: bool) -> String {
     total.to_string()
 }
 
-pub fn solve2() -> String {
+fn solve2(full: bool) -> String {
     // Placeholder for part 2 solution
     "Not implemented".to_string()
 }
@@ -76,6 +89,6 @@ inventory::submit! {
     crate::AocEntry2024 {
         year: 2024,
         day: 1,
-        solve: solve1,
+        solve: solve,
     }
 }

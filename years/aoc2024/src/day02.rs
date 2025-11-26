@@ -1,4 +1,4 @@
-pub fn solve(full: bool) -> String {
+pub fn solve(full: bool, part: Option<u8>) -> String {
     return "Not implemented".to_string();
 }
 
