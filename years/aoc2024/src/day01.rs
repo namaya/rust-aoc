@@ -81,8 +81,37 @@ fn solve1(full: bool) -> String {
 }
 
 fn solve2(full: bool) -> String {
-    // Placeholder for part 2 solution
-    "Not implemented".to_string()
+    let contents = read_input(1, full).expect("Failed to read input file");
+
+    let (left_list, right_list): (Vec<i32>, Vec<i32>) = contents
+        .lines()
+        .filter(|line| !line.is_empty())
+        .filter_map(|line| {
+            let nums: Vec<i32> = line
+                .split_whitespace()
+                .filter_map(|s| s.parse().ok())
+                .collect();
+
+            if nums.len() >= 2 {
+                Some((nums[0], nums[1]))
+            } else {
+                None
+            }
+        })
+        .unzip();
+
+    let total: i32 = left_list
+        .iter()
+        .map(|left_val| {
+            let count = right_list
+                .iter()
+                .filter(|&right_val| right_val == left_val)
+                .count() as i32;
+            left_val * count
+        })
+        .sum();
+
+    total.to_string()
 }
 
 inventory::submit! {
