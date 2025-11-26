@@ -12,11 +12,12 @@ tasks:
     vars:
       YEAR: '{{.YEAR | default "2024"}}'
       DAY: '{{.DAY}}'
+      FULL_FLAG: '{{if .FULL}}--full{{end}}'
     cmds:
       - |
         if [ -n "{{.DAY}}" ]; then
-          cargo run -p runner -- {{.YEAR}} --day {{.DAY}};
+          cargo run -p runner -- {{.YEAR}} --day {{.DAY}} {{.FULL_FLAG}}
         else
-          cargo run -p runner -- {{.YEAR}};
+          cargo run -p runner -- {{.YEAR}} {{.FULL_FLAG}}
         fi
     silent: true

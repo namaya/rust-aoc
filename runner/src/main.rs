@@ -8,6 +8,10 @@ struct Args {
     /// day to run (e.g., 1). If omitted, run all days.
     #[structopt(short, long)]
     day: Option<u32>,
+
+    /// run on full input
+    #[structopt(short, long)]
+    full: bool,
 }
 
 fn main() -> Result<()> {
@@ -38,7 +42,7 @@ fn main() -> Result<()> {
         2024 => {
             for entry in entries2024.iter() {
                 if args.day.is_none() || Some(entry.day) == args.day {
-                    results.push((entry.day, (entry.solve)(true)));
+                    results.push((entry.day, (entry.solve)(args.full)));
                 }
             }
         }
