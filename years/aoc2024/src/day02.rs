@@ -1,5 +1,4 @@
-
-pub fn solve() -> String {
+pub fn solve(full: bool) -> String {
     return "Not implemented".to_string();
 }
 
@@ -10,3 +9,4 @@ inventory::submit! {
         solve: solve,
     }
 }
+

@@ -38,7 +38,7 @@ fn main() -> Result<()> {
         2024 => {
             for entry in entries2024.iter() {
                 if args.day.is_none() || Some(entry.day) == args.day {
-                    results.push((entry.day, (entry.solve)()));
+                    results.push((entry.day, (entry.solve)(true)));
                 }
             }
         }

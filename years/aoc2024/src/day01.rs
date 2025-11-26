@@ -35,8 +35,8 @@ pub fn read_input(day: u8, full: bool) -> Result<String, Error> {
     contents
 }
 
-pub fn solve1() -> String {
-    let contents = read_input_full(1).expect("Failed to read input file");
+pub fn solve1(full: bool) -> String {
+    let contents = read_input(1, full).expect("Failed to read input file");
 
     let (mut left_list, mut right_list): (Vec<i32>, Vec<i32>) = contents
         .lines()
