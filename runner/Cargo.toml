@@ -13,4 +13,6 @@ aoc2024 = { path = "../years/aoc2024" }
 anyhow = "1"
 structopt = "0.3"
 inventory = "0.3"
+log = "0.4"
+env_logger = "0.10"
 

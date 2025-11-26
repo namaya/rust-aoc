@@ -1,6 +1,5 @@
-
-use structopt::StructOpt;
 use anyhow::Result;
+use structopt::StructOpt;
 
 #[derive(StructOpt)]
 struct Args {
@@ -12,6 +11,8 @@ struct Args {
 }
 
 fn main() -> Result<()> {
+    env_logger::init();
+
     let args = Args::from_args();
     let entries2022 = aoc2022::get_entries();
     let entries2023 = aoc2023::get_entries();
