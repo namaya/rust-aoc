@@ -30,6 +30,30 @@ fn is_safe_report(report: &[u32]) -> bool {
     is_ascending || is_descending
 }
 
+fn is_safe_report_with_tolerance(report: &[u32]) -> bool {
+    if report.len() < 2 {
+        return false;
+    }
+
+    if is_safe_report(report) {
+        return true;
+    }
+
+    for i in 0..report.len() {
+        let modified_report: Vec<u32> = report
+            .iter()
+            .enumerate()
+            .filter_map(|(idx, &val)| if idx != i { Some(val) } else { None })
+            .collect();
+
+        if is_safe_report(&modified_report) {
+            return true;
+        }
+    }
+
+    false
+}
+
 pub fn solve1(full: bool) -> String {
     let contents = read_input(2, full).expect("Failed to read input file");
 
@@ -49,7 +73,21 @@ pub fn solve1(full: bool) -> String {
 }
 
 pub fn solve2(full: bool) -> String {
-    return "Not implemented".to_string();
+    let contents = read_input(2, full).expect("Failed to read input file");
+
+    let safe_count = contents
+        .lines()
+        .filter(|line| {
+            let report: Vec<u32> = line
+                .split_whitespace()
+                .filter_map(|s| s.parse::<u32>().ok())
+                .collect();
+
+            is_safe_report_with_tolerance(&report)
+        })
+        .count();
+
+    safe_count.to_string()
 }
 
 inventory::submit! {
