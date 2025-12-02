@@ -10,7 +10,7 @@ tasks:
   
   run:
     vars:
-      YEAR: '{{.YEAR | default "2024"}}'
+      YEAR: '{{.YEAR | default "2025"}}'
       DAY: '{{.DAY}}'
       FULL_FLAG: '{{if .FULL}}--full{{end}}'
     cmds:

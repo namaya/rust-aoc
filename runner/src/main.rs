@@ -23,6 +23,7 @@ fn main() -> Result<()> {
     let entries2022 = aoc2022::get_entries();
     let entries2023 = aoc2023::get_entries();
     let entries2024 = aoc2024::get_entries();
+    let entries2025 = aoc2025::get_entries();
 
     let mut results = Vec::new();
 
@@ -43,6 +44,13 @@ fn main() -> Result<()> {
         }
         2024 => {
             for entry in entries2024.iter() {
+                if args.day.is_none() || Some(entry.day) == args.day {
+                    results.push((entry.day, (entry.solve)(args.full, args.part)));
+                }
+            }
+        }
+        2025 => {
+            for entry in entries2025.iter() {
                 if args.day.is_none() || Some(entry.day) == args.day {
                     results.push((entry.day, (entry.solve)(args.full, args.part)));
                 }

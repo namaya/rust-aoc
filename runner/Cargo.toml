@@ -10,6 +10,7 @@ common = { path = "../common" }
 aoc2022 = { path = "../years/aoc2022" }
 aoc2023 = { path = "../years/aoc2023" }
 aoc2024 = { path = "../years/aoc2024" }
+aoc2025 = { path = "../years/aoc2025" }
 anyhow = "1"
 structopt = "0.3"
 inventory = "0.3"
