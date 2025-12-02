@@ -29,10 +29,7 @@ fn solve1(full: bool) -> String {
             .unwrap_or(0);
 
         if line.starts_with('L') {
-            value = value - (delta % 100);
-            if value < 0 {
-                value += 100;
-            }
+            value = ((value - delta) % 100 + 100) % 100;
         } else if line.starts_with('R') {
             value = (value + delta) % 100;
         }
@@ -48,9 +45,35 @@ fn solve1(full: bool) -> String {
 fn solve2(full: bool) -> String {
     let contents = read_input(1, full).expect("Failed to read input file");
 
-    // TODO: Implement solution for part 2
+    let mut value = 50;
+    let mut count = 0;
 
-    "Not implemented".to_string()
+    contents.lines().for_each(|line| {
+        let delta = line
+            .trim_start_matches('L')
+            .trim_start_matches('R')
+            .parse::<i32>()
+            .unwrap_or(0);
+
+        if line.starts_with('L') {
+            count += ((100 - value) + delta) / 100;
+            if value == 0 {
+                count -= 1;
+            };
+            value = ((value - delta) % 100 + 100) % 100;
+        } else if line.starts_with('R') {
+            count += (value + delta) / 100;
+            value = (value + delta) % 100;
+        };
+
+        // println!("Value: {}, Count: {}", value, count);
+
+        // if value == 0 {
+        //     count -= 1;
+        // }
+    });
+
+    count.to_string()
 }
 
 inventory::submit! {
